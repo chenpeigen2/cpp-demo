@@ -2,7 +2,7 @@
 CC      := clang
 CXX     := clang++
 CFLAGS  := -std=c2x -Wall -Wextra      # C23
-CXXFLAGS:= -std=c++23 -Wall -Wextra    # C++23
+CXXFLAGS:= -std=c++26 -Wall -Wextra    # C++26（最新标准，向后兼容 C++23）
 LDFLAGS := -pthread                    # 线程演示需要；对其他文件无害
 
 C_SRCS  := $(wildcard c/*.c)

@@ -1,11 +1,11 @@
-# cpp-demo —— C23 / C++23 特性与标准库全览
+# cpp-demo —— C23 / C++26 特性与标准库全览
 
 用 **clang** 编译的 C 和 C++ 特性演示集。每个文件独立编译运行、单一主题、中文注释，可作为速查手册。
 
 ## 构建（macOS / Apple clang 21）
 
 ```sh
-make        # 编译全部 68 个演示（C 用 -std=c2x，C++ 用 -std=c++23）
+make        # 编译全部 71 个演示（C 用 -std=c2x 即 C23，C++ 用 -std=c++26）
 make run    # 编译并依次运行，任何一个失败即报错
 make clean
 ```
@@ -17,7 +17,7 @@ make clean
 | 目录 | 内容 |
 |---|---|
 | `c/`  | C23 语言特性 + C 标准库头巡礼（26 个文件） |
-| `cpp/` | C++23 核心语言 + 标准库头巡礼（42 个文件） |
+| `cpp/` | C++26（向后覆盖 C++23/20）核心语言 + 标准库头巡礼（44 个文件） |
 
 ## C 演示索引
 
@@ -49,6 +49,7 @@ make clean
 | `24_atomic.c` | C11 原子操作、CAS、自旋锁 |
 | `25_pthreads.c` | POSIX 线程（macOS 无 C11 threads.h） |
 | `26_bitwise.c` | 位技巧（popcount/2 的幂/交换） |
+| `27_embed.c` | C23 `#embed`：编译期嵌入文件 |
 
 ## C++ 演示索引
 
@@ -113,10 +114,12 @@ make clean
 | `69_pmr_allocators.cpp` | pmr 多态分配器、对齐 new |
 | `70_compat_c_headers.cpp` | <cXXX> C 兼容头、宽字符 |
 | `71_compare_misc.cpp` | C++20 <=>、source_location、valarray |
+| `72_cpp26_lang.cpp` | C++26：占位符 `_`、包索引、`=delete("原因")`、static operator() |
+| `73_cpp26_lib.cpp` | C++26 库：饱和算术、span 列表初始化、ranges 增强 |
 
 ## 本机（Apple clang 21）尚不可用的标准库
 
 - C：`<threads.h>`（用 pthread 替代，见 `c/25`）、`<stdbit.h>`（手写等价函数，见 `c/26`）
-- C++：`std::generator`（手写协程替代，见 `cpp/61`）、`std::osyncstream`（锁保护输出替代，见 `cpp/60`）、部分 C++23 views（`enumerate/chunk/slide/stride`）
+- C++：`std::generator`（手写协程替代，见 `cpp/61`）、`std::osyncstream`（锁保护输出替代，见 `cpp/60`）、部分 C++23/26 views（`enumerate/chunk/slide/stride`）、C++26 契约（clang 21 未实现 P2900）、`constexpr` placement new（P2747）
 
 其余标准库头在本机均可编译运行。
