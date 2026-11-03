@@ -5,7 +5,7 @@
 ## 构建（macOS / Apple clang 21）
 
 ```sh
-make        # 编译全部 93 个演示（C 用 -std=c2x 即 C23，C++ 用 -std=c++26）
+make        # 编译全部 102 个演示（C 用 -std=c2x 即 C23，C++ 用 -std=c++26）
 make run    # 编译并依次运行，任何一个失败即报错
 make clean
 ```
@@ -16,8 +16,8 @@ make clean
 
 | 目录 | 内容 |
 |---|---|
-| `c/`  | C23 语言特性 + 标准库头巡礼（27 个） + 实战专题（8 个） |
-| `cpp/` | C++26（向后覆盖 C++23/20）核心语言 + 标准库巡礼（44 个） + 进阶专题（14 个） |
+| `c/`  | C23 语言特性 + 标准库头巡礼（27 个） + 实战专题（11 个） |
+| `cpp/` | C++26（向后覆盖 C++23/20）核心语言 + 标准库巡礼（44 个） + 进阶专题（20 个） |
 
 ## C 演示索引
 
@@ -63,6 +63,9 @@ make clean
 | `33_endian_align.c` | 字节序、对齐、padding 布局数据 |
 | `34_xmacro.c` | X-macro 元编程（枚举↔字符串、字段反射表） |
 | `35_benchmark.c` | 微基准：memcpy vs 循环、strlen 缓存等 ns/op 表 |
+| `36_memory_pool.c` | 内存池：arena bump + 固定块 free-list（分配快几十倍实测） |
+| `37_state_machine.c` | 数据驱动状态机：转移表 + 函数指针动作 |
+| `38_string_builder.c` | 倍增缓冲 vs strcat O(n²)（实测 10 倍+差距） |
 
 ## C++ 演示索引
 
@@ -148,6 +151,19 @@ make clean
 | `85_container_perf.cpp` | 容器性能：reserve/拷贝vs移动/vector vs list/字符串拼接 |
 | `86_spaceship_custom.cpp` | <=> 定制：strong/weak/partial 三档相等强度 |
 | `87_flat_map_perf.cpp` | flat_map vs map vs unordered_map 三方实测选型 |
+| `88_rvo_elision.cpp` | RVO/拷贝消除：构造/拷贝/移动计数实测表 |
+| `89_sso_string.cpp` | SSO 短字符串优化：栈/堆判定 + 性能差异实测 |
+| `90_custom_view.cpp` | 手写 ranges 视图：迭代器 + 管道闭包 + view_interface |
+| `91_ast_visit.cpp` | AST 求值：variant+visit vs 虚函数（表达式问题） |
+| `92_allocators.cpp` | 自定义分配器统计：看见容器的每一次堆分配 |
+| `93_concepts_advanced.cpp` | 概念进阶：蕴含、requires 五种形态、缩写模板 |
+
+## 学习路径
+
+**入门**（语言基础）：c/01→10，cpp/30→34
+**进阶**（标准库全景）：c/14→18，cpp/40→59
+**高手**（惯用法与性能）：cpp/74→93，c/28→38
+**参考书定位**：遇到忘了的语法按 README 索引查；每文件末尾注释都给出'工程经验'结论
 
 ## 本机（Apple clang 21）尚不可用的标准库
 
